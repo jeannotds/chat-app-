@@ -1,17 +1,15 @@
 
 const express = require('express');
 const mongoose = require('mongoose');
-
-const app = express();
-
-
-
+const Thing = require('./models/Thing')
 
   mongoose.connect('mongodb+srv://jeannotds:jeannot1997@cluster0.f0osgcn.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
+
+  const app = express();
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -20,10 +18,16 @@ app.use((req, res, next) => {
     next();
   });
 
-
 app.post('/api/stuff', (req, res, next) => {
-    console.log(req.body)
-    res.status(200).json({message : "Objet creer"})
+    // enlever le champ Id du corps de la requete parce qu'il sera generé auto.
+    // Retirer le champs Id avant de copier
+    delete req.body._id; 
+    const thing = new Thing({...req.body})
+    // Enregistre l'objet dans la BD et retourne une promesse
+
+    thing.save()
+    .then(res.status(201).json({message : "Objet enregistré !"})) // renvoyer une reponse
+    .catch(error => res.status(404).json(error)) // Recuperer l'error et envoyer un code 404
 })
 
  app.get('/api/stuff', (req, res, next) => {
