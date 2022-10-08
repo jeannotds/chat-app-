@@ -20,7 +20,7 @@ exports.deleteThing = (req, res, next) => {
   }
 
 exports.getOnThing = (req, res, next) => {
-    Thing.findOne({_id: req.params.id})
+    Thing.findOne({_id: req.params._id})
     .then(thing => res.status(200).json(thing))
     .catch(error => res.status(404).json(error))
 }
