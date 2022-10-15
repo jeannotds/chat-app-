@@ -44,10 +44,3 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
  };
-
- exports.getAllUsers = (req, res, next) => {
-    delete req.body._id;
-    const user = new User({ ...req.body})
-    .then(res.status(201).json({user})) 
-    .catch(error => res.status(404).json(error))
- }
