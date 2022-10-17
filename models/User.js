@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator')
-const { schema } = require('./Thing')
+// const { schema } = require('./Thing')
 //mongoose unique validator : permet de donner a notre mail une valeur unique
 //npm install --save mongoose-unique-validator
 
