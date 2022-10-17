@@ -88,6 +88,6 @@ exports.login = (req, res, next) => {
         user: {
             id: req.user._id,
             useremail: req.user.email,
-        }
+        }   
     })
 }
