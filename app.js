@@ -3,8 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 // const routerRoutes = require('./routes/stuff')
-const userRoutes = require('./routes/user')
-// const cors = require('cors')
+const userRoutes = require('./routes/user');
+const passport = require('passport');
+const cors = require('cors')
 
   mongoose.connect('mongodb+srv://jeannotds:jeannot1997@cluster0.f0osgcn.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
@@ -13,11 +14,13 @@ const userRoutes = require('./routes/user')
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
   const app = express();
-
+  
+  app.use(express.json())
   app.use(bodyParser.json())
- 
-  // app.use(cors())
+  app.use(cors())
+  app.use(passport.initialize())
 
+  require('./passport/passport')
 
 
 app.use((req, res, next) => {

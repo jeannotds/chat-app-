@@ -1,7 +1,14 @@
 
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
-const jwt = require('jsonwebtoken') //jsonwebtoken
+const jwt = require('jsonwebtoken'); //jsonwebtoken
+const app = require('../app');
+const passport = require('passport');
+
+
+exports.protectedUser = (req, res) => {
+    
+}
 
 //Enregistrement nouveau utilisateur
 
@@ -31,6 +38,7 @@ exports.signup = (req, res, next) => {
 
        }));
   };
+  
 
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
@@ -75,3 +83,6 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));
  };
+
+    
+
