@@ -41,19 +41,35 @@ exports.login = (req, res, next) => {
                     message: 'Utilisateur non trouvé'
                  });
             }
+
+            //Mot de passe incorrect
+
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {
-                        return res.status(401).json({ error: 'Mot de passe incorrect !' });
+                        return res.status(401).json({ 
+                            success: false,
+                            error: 'Mot de passe incorrect !' 
+                        });
                     }
-                    res.status(200).json({
-                        userId: user._id,
-                        token: jwt.sign(
-                            { userId: user._id },
-                            'RANDOM_TOKEN_SECRET',
-                            { expiresIn: '24h' }
-                        )
-                    });
+                    
+                    const payload = {
+                        email_user: user.email,
+                        id: user._id
+                    }
+                    
+                    const token = jwt.sign(
+                        payload,
+                        'RANDOM_TOKEN_SECRET',
+                        { expiresIn: '24h' }
+                    )
+
+                    return res.status(200).json({
+                        success: true,
+                        message: "charger avec succes",
+                        token: "Bearer" + token
+                    })
+
                 })
                 .catch(error => res.status(500).json({ error }));
         })
