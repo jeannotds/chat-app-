@@ -18,10 +18,12 @@ exports.signup = (req, res, next) => {
             { 
                 message: 'Utilisateur créé !' ,
                 success: 'true',
-                user: user
+                user: {
+                    id: user._id,
+                    username: user.name
+                }
             }
-                
-            ))
+        ))
           .catch(error => res.status(400).json({ error }));
       })
       .catch(error => res.status(500).json({ error }));
