@@ -6,9 +6,7 @@ const app = require('../app');
 const passport = require('passport');
 
 
-exports.protectedUser = (req, res) => {
-    
-}
+
 
 //Enregistrement nouveau utilisateur
 
@@ -77,7 +75,6 @@ exports.login = (req, res, next) => {
                         message: "charger avec succes",
                         token: "Bearer" + token
                     })
-
                 })
                 .catch(error => res.status(500).json({ error }));
         })
@@ -85,4 +82,12 @@ exports.login = (req, res, next) => {
  };
 
     
-
+ exports.protectedUser = (req, res) => {
+    return res.status(200).send({
+        success : true,
+        user: {
+            id: req.user._id,
+            useremail: req.user.email,
+        }
+    })
+}
