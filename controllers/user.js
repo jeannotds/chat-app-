@@ -73,7 +73,7 @@ exports.login = (req, res, next) => {
                     return res.status(200).json({
                         success: true,
                         message: "charger avec succes",
-                        token: "Bearer" + token
+                        token: "Bearer " + token
                     })
                 })
                 .catch(error => res.status(500).json({ error }));
