@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 // const routerRoutes = require('./routes/stuff')
 const userRoutes = require('./routes/user');
 const chatRoutes = require('./routes/chat')
+const messageRoutes = require('./routes/message')
 
 const passport = require('passport');
 const cors = require('cors')
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 
 app.use('/api/auth', userRoutes)
 app.use('/api/chat', chatRoutes)
+app.use('/api/message', messageRoutes)
 
 
 module.exports = app;
