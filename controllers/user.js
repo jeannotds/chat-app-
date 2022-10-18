@@ -81,6 +81,11 @@ exports.login = (req, res, next) => {
         .catch(error => res.status(500).json({ error }));
  };
 
+  exports.getOnUser = async (req, res) => { 
+    
+    const users = await User.find({ _id: { $ne: req.params.id } })
+        res.json(users)
+}
     
  exports.protectedUser = (req, res) => {
     return res.status(200).send({
