@@ -2,6 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
+// const routerRoutes = require('./routes/stuff')
 const userRoutes = require('./routes/user');
 const chatRoutes = require('./routes/chat')
 
@@ -32,7 +33,7 @@ app.use((req, res, next) => {
   });
 
 app.use('/api/auth', userRoutes)
-app.use('api/chat', chatRoutes)
+app.use('/api/chat', chatRoutes)
 
 
 module.exports = app;

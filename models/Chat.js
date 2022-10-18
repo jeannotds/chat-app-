@@ -2,15 +2,28 @@
 
 const mongoose = require('mongoose')
 
+// const ChatSchema = mongoose.Schema(
+//     {
+//         members: {
+//             type: Array,
+//         }
+//     },
+//     {
+//         timestamps: true
+//     }
+// )
+
+// module.exports = mongoose.model('Chat', ChatSchema);
+
 const ChatSchema = mongoose.Schema(
     {
-        members: {
-            type: Array,
-        }
+      members: {
+        type: Array,
+      },
     },
     {
-        timestamps: true
+      timestamps: true,
     }
-)
-
-module.exports = mongoose.model('Chat', ChatSchema);
+  );
+  
+module.exports = mongoose.model("Chat", ChatSchema);
