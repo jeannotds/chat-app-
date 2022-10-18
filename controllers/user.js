@@ -86,6 +86,12 @@ exports.login = (req, res, next) => {
     const users = await User.find({ _id: { $ne: req.params.id } })
         res.json(users)
 }
+
+// const secretRoute = (req, res) => { 
+    
+//     return res.status(200)
+               
+// }
     
  exports.protectedUser = (req, res) => {
     return res.status(200).send({
