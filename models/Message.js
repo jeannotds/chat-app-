@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 
 const MessageSchema = mongoose.Schema({
-    chatId:{ type: String },
+    chatId:{ type: String },  //ConversationID
     senderId: { type: String },
     text: { type: String }
 }, 
