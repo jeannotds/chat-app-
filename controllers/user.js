@@ -104,7 +104,7 @@ exports.getOneUser = (req, res) => {
 
     const userId = req.params.id;
 
-    User.findOne({_id:userId})
+    User.find({_id : {$ne : userId}})
     .then((data)=>{
         res.status(200).send({
             user:data
