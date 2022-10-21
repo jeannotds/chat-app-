@@ -33,9 +33,9 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use('/api/auth', userRoutes)
-app.use('/api/chat', chatRoutes)
-app.use('/api/message', messageRoutes)
+app.use('/auth', userRoutes)
+app.use('/chat', chatRoutes)
+app.use('/message', messageRoutes)
 
 
 module.exports = app;

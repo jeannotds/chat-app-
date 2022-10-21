@@ -36,7 +36,7 @@ exports.signup = (req, res, next) => {
 
        }));
   };
-  
+
 
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
@@ -84,14 +84,10 @@ exports.login = (req, res, next) => {
   exports.getOnUser = async (req, res) => { 
     
     const users = await User.find({ _id: { $ne: req.params.id } })
+    // const users = await User.find({ _id: { $in: req.params.id } })
+
         res.json(users)
 }
-
-// const secretRoute = (req, res) => { 
-    
-//     return res.status(200)
-               
-// }
     
  exports.protectedUser = (req, res) => {
     return res.status(200).send({
@@ -102,3 +98,27 @@ exports.login = (req, res, next) => {
         }   
     })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const secretRoute = (req, res) => { 
+    
+//     return res.status(200)
+               
+// }
