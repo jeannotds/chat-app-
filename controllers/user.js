@@ -100,6 +100,20 @@ exports.login = (req, res, next) => {
     })
 }
 
+exports.getOneUser = (req, res) => {
+
+    const userId = req.params.id;
+
+    User.findOne({_id:userId})
+    .then((data)=>{
+        res.status(200).send({
+            user:data
+        })
+    }).catch((error)=>{
+        res.status(400).json(error)
+    })
+}
+
 
 
 
