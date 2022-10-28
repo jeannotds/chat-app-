@@ -22,7 +22,7 @@ exports.addMessage = (req, res) => {
         $and: [{ $or: [{ senderId: senderId }, {chatId: senderId}] },
                 { $or: [{ senderId: chatId }, {chatId : chatId}] }
             ],
-              
+            
     }) 
     .then((result) => {
         res.status(200).json(result)
