@@ -4,7 +4,6 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 // const routerRoutes = require('./routes/stuff')
 const userRoutes = require('./routes/user');
-const chatRoutes = require('./routes/chat')
 const messageRoutes = require('./routes/message')
 
 const passport = require('passport');
@@ -34,7 +33,6 @@ app.use((req, res, next) => {
   });
 
 app.use('/auth', userRoutes)
-app.use('/chat', chatRoutes)
 app.use('/message', messageRoutes)
 
 
