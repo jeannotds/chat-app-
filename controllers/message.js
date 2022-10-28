@@ -15,9 +15,15 @@ exports.addMessage = (req, res) => {
     
   };
 
- exports.getMessages = (req, res) => {
-    const { chatId } = req.params;
-    Message.find({chatId}) 
+ exports.getMessages =  (req, res) => {
+    const chatId = req.params.chatId;
+    const senderId = req.params.senderId;
+    Message.find({
+        $and: [{ $or: [{ senderId: senderId }, {chatId: senderId}] },
+                { $or: [{ senderId: chatId }, {chatId : chatId}] }
+            ],
+              
+    }) 
     .then((result) => {
         res.status(200).json(result)
     })
