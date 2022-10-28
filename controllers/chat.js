@@ -27,7 +27,7 @@ const userChats = (req, res) => {
         res.status(500).json(err)
     })
 }
-
+    
 const findChat = (req, res) => {
     Chat.findOne({
         members: {$all: [req.params.firstId, req.params.secondId]}
