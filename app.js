@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 // const routerRoutes = require('./routes/stuff')
 const userRoutes = require('./routes/user');
 const messageRoutes = require('./routes/message')
+// const server = require('./server')
 
 const passport = require('passport');
 const cors = require('cors')
