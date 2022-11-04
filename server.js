@@ -72,7 +72,7 @@ const getUser = (userId) => {
 };
 
 io.on("connection", (socket) => {
-  console.log("A user is connected : ", socket.id);
+  // console.log("A user is connected : ", socket.id);
   // envoyer le message au client
   // io.emit("welcome", "Hello this is socket server");
 
@@ -85,13 +85,16 @@ io.on("connection", (socket) => {
 
   //send message and get message
   socket.on("sendMessage", ({ senderId, chatId, text }) => {
-    const user = getUser(chatId);
+    // const user = getUser(senderId);
+    const user = users.find((user) => user.userId === chatId);
+    console.log("Users user : ", user);
     io.to(user.socketId).emit("getMessage", {
       senderId,
-      chatId: chatId,
+      chatId,
       text,
     });
   });
+  console.log("users ; ", users);
 
   socket.on("disconnect", () => {
     // if someone is disconnect
@@ -100,6 +103,8 @@ io.on("connection", (socket) => {
     removeUser(socket.id);
     //send to the server
     io.emit("getUsers", users);
+
+    console.log("users ; ", users);
   });
 });
 
