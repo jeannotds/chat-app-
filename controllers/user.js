@@ -2,21 +2,16 @@
 const bcrypt = require('bcrypt')
 const User = require('../models/User')
 const jwt = require('jsonwebtoken'); //jsonwebtoken
-const app = require('../app');
-const passport = require('passport');
-
-
-
 
 //Enregistrement nouveau utilisateur
-
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
       .then(hash => {
         const user = new User({
             name: req.body.name,
-          email: req.body.email,
-          password: hash
+            email: req.body.email,
+            password: hash,
+            picture: req.body.picture
         });
         user.save()
           .then(() => res.status(201).json(
@@ -49,7 +44,6 @@ exports.login = (req, res, next) => {
             }
 
             //Mot de passe incorrect
-
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if (!valid) {
@@ -86,7 +80,6 @@ exports.login = (req, res, next) => {
     
     const users = await User.find({ _id: { $ne: req.params.id } })
     // const users = await User.find({ _id: { $in: req.params.id } })
-
         res.json(users)
 }
     
