@@ -2,8 +2,8 @@ const Message = require("../models/Message")
 
 
 exports.addMessage = (req, res) => {
-    const { chatId, senderId, text } = req.body;
-    const message = new Message({ chatId, senderId, text, });
+    const { chatId, senderId, text, image, } = req.body;
+    const message = new Message({ chatId, senderId, text, image, });
     
     message.save()
     .then((result) => {
