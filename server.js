@@ -85,7 +85,7 @@ io.on("connection", (socket) => {
 
   
   //send message and get message
-  socket.on("sendMessage", ({ senderId, chatId, text }) => {
+  socket.on("sendMessage", ({ senderId, chatId, text, image }) => {
 
     const user = getUser(chatId);
     // const user = users.find((user) => user.userId === chatId);
@@ -94,6 +94,7 @@ io.on("connection", (socket) => {
       senderId,
       // chatId,
       text,
+      image,
     });
   });
 

@@ -8,7 +8,7 @@ const MessageSchema = mongoose.Schema({
     chatId:{ type: String },  //ConversationID recepteur
     senderId: { type: String },
     text: { type: String },
-    image: { type: Array }
+    image: { type: Array },
 }, 
     {
         timestamps: true
